@@ -1,0 +1,237 @@
+
+<!doctype html>
+<head>
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #map {
+      height: 100%;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <title>Map</title>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script type="text/javascript">
+  
+  
+    var citymap = {
+      chicago: {
+        center: {
+          lat: 41.878,
+          lng: -87.629
+        },
+        population: 2714856,
+        events: {
+          event1: {
+            location: {
+              lat: 41.888,
+              lng: -87.629
+            },
+            article: 'http://www.google.com/',
+            info: "AAAASome dude died"
+          },
+          event2: {
+            location: {
+              lat: 41.785,
+              lng: -87.578
+            },
+            article: 'http://www.macalester.edu/',
+            info: "AAAAbleep bloop"
+          },
+          event3: {
+            location: {
+              lat: 41.920,
+              lng: -87.891
+            },
+            article: 'http://www.github.com/',
+            info: 'AAAAcondor! condor!'
+          },
+          event4: {
+            location: {
+              lat: 41.653,
+              lng: -87.488
+            },
+            article: 'http://www.reddit.com/',
+            info: 'AAAAfront page of the internet'
+          }
+
+        }
+      },
+      newyork: {
+        center: {
+          lat: 40.714,
+          lng: -74.005
+        },
+        population: 8405837,
+        events: {
+          event1: {
+            location: {
+              lat: 40.714,
+              lng: -74.005
+            },
+            article: 'http://www.google.com/',
+            info: "BBBBSome dude died"
+          },
+          event2: {
+            location: {
+              lat: 40.687,
+              lng: -73.790
+            },
+            article: 'http://www.macalester.edu/',
+            info: "BBBBbleep bloop"
+          },
+          event3: {
+            location: {
+              lat: 40.791,
+              lng: -74.038
+            },
+            article: 'http://www.github.com/',
+            info: 'BBBBcondor! condor!'
+          },
+          event4: {
+            location: {
+              lat: 40.672,
+              lng: -73.981
+            },
+            article: 'http://www.reddit.com/',
+            info: 'BBBBfront page of the internet'
+          }
+
+        }
+      },
+      losangeles: {
+        center: {
+          lat: 34.052,
+          lng: -118.243
+        },
+        population: 3857799,
+        events: {
+          event1: {
+            location: {
+              lat: 34.052,
+              lng: -118.243
+            },
+            article: 'http://www.google.com/',
+            info: "CCCCSome dude died"
+          },
+          event2: {
+            location: {
+              lat: 33.910,
+              lng: -118.396
+            },
+            article: 'http://www.macalester.edu/',
+            info: "CCCCbleep bloop"
+          },
+          event3: {
+            location: {
+              lat: 33.923,
+              lng: -118.035
+            },
+            article: 'http://www.github.com/',
+            info: 'CCCCcondor! condor!'
+          }
+
+        }
+      },
+      vancouver: {
+        center: {
+          lat: 49.25,
+          lng: -123.1
+        },
+        population: 603502,
+        events: {
+          event1: {
+            location: {
+              lat: 41.888,
+              lng: -87.629
+            },
+            article: 'http://www.google.com/',
+            info: "AAAASome dude died"
+          },
+          event2: {
+            location: {
+              lat: 41.785,
+              lng: -87.578
+            },
+            article: 'http://www.macalester.edu/',
+            info: "AAAAbleep bloop"
+          },
+          event3: {
+            location: {
+              lat: 41.920,
+              lng: -87.891
+            },
+            article: 'http://www.github.com/',
+            info: 'AAAAcondor! condor!'
+          },
+          event4: {
+            location: {
+              lat: 41.653,
+              lng: -87.488
+            },
+            article: 'http://www.reddit.com/',
+            info: 'AAAAfront page of the internet'
+          }
+
+        }
+      }
+    };
+
+    var map;
+
+    function initMap() {
+      var mapStuff = function(){
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {
+            lat: 40.000,
+            lng: -100.000
+          },
+          zoom: 4,
+          scrollwheel: false,
+          draggable: false
+        });
+        return map
+      }
+      
+      var drawCity = function(){
+        
+      }
+      for (var city in citymap) {
+        // Add the circle for this city to the map.
+        
+        var currCity = citymap[city]
+        google.maps.event.addListener(cityCircle, 'click', function() {
+          //remove the circle
+          this.setMap(null);
+          map.setZoom(8);
+          map.setCenter(this.getCenter());
+          for (var event in currCity.events) {
+            //add the markers for the events
+            var eventList = currCity.events
+            console.log(eventList[event])
+            var eventMarker = new google.maps.Marker({
+              position: eventList[event].location,
+              map: map,
+              title: eventList[event].article
+            });
+          }
+        });
+      };
+
+    
+
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCInVzdqx0rOwXZtTetRy1X0BM245F2Bew&callback=initMap">
+  </script>
+</body>
+
+</html>

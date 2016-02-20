@@ -24,9 +24,11 @@ class LinkParser(HTMLParser):
                     # And add it to our colection of links:
                         self.links = self.links + [newUrl]
         if tag == "p":
-            check = attrs[0][1]
-            if check == 'zn-body__paragraph':
-                dataIndices.append(self.getpos()[1])
+            check = "" 
+            if len(attrs) > 0 and len(attrs[0]) > 1:
+                check = attrs[0][1]
+                if check == 'zn-body__paragraph':
+                    dataIndices.append(self.getpos()[1])
 
 
     def getLinks(self, url):
@@ -46,7 +48,9 @@ class LinkParser(HTMLParser):
 def newsCrawler(url, wordBank, maxPages):  
     pagesToVisit = [url]
     numberVisited = 0
+    text = ""
     while numberVisited < maxPages and pagesToVisit != []:
+        text = ""
         numberVisited = numberVisited +1
         # Start from the beginning of our collection of pages to visit:
         url = pagesToVisit[0]
@@ -56,11 +60,14 @@ def newsCrawler(url, wordBank, maxPages):
             parser = LinkParser()
             data, links = parser.getLinks(url) #links should only be links to articles
             for index in parser.getIndices():
-                print(data[index+30:data.find("</p>", index)])
+                endex = data.find("</p>", index)
+                text = text + data[index+30:endex]
             for word in wordBank: 
-                wordScore = data.find(word)
-                pagesToVisit = pagesToVisit + links
-                print(" **Found:**", word, " ", wordScore," times")
+                wordScore = text.find(word)
+                if wordScore > 10000:
+                    print(text)
+                print("Found: ", word, " ", wordScore, "times")
+            pagesToVisit = pagesToVisit + links
         except(e):
             print(e)
 
@@ -74,4 +81,4 @@ def getWordBank(pathToWordBank):
     
     return wordBank
 
-newsCrawler("http://www.cnn.com/2016/02/18/world/uganda-election-social-media-shutdown/index.html", [''], 1)
+newsCrawler("http://www.cnn.com/specials/us/crime-and-justice", getWordBank("../parse/wordbank.txt"), 20)

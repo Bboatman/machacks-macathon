@@ -59,19 +59,18 @@ def getUniqueArticleText(articles):
     articleText = list(wordDict.items())
     return articleText 
 
-articles = getArticles()
-articleText = getUniqueArticleText(articles)
-bestWords = []
-for wordval in articleText:
-    if wordval[1] > ceil(len(articles) /2):
-        if len(wordval[0]) > 4:
-            bestWords.append(wordval[0])
-goodWords = open('./wordbank.txt', 'w')
-for word in bestWords:
-    goodWords.write(word + "\n")
-goodWords.close()
-
-print(bestWords)
+def generateWordBank():
+    articles = getArticles()
+    articleText = getUniqueArticleText(articles)
+    bestWords = []
+    for wordval in articleText:
+        if wordval[1] > ceil(len(articles) /2):
+            if len(wordval[0]) > 4:
+                bestWords.append(wordval[0])
+    goodWords = open('./wordbank.txt', 'w')
+    for word in bestWords:
+        goodWords.write(word + "\n")
+    goodWords.close()
             
     
 
