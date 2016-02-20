@@ -14,3 +14,5 @@
     - Polish inter-program scripting communication
     - Gather further data on modelable data
     - Look into ways of filtering out actors(victims/perpetrators?) in articles
+    - Further generalize data training for future 
+    
