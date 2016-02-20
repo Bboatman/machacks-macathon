@@ -2,6 +2,8 @@ from html.parser import HTMLParser
 from urllib.request import urlopen  
 from urllib import parse
 
+year = "2016"
+
 # We are going to create a class called LinkParser that inherits some
 # methods from HTMLParser which is why it is passed into the definition
 # from:git http://www.netinstructions.com/how-to-make-a-web-crawler-in-under-50-lines-of-python-code/
@@ -23,9 +25,10 @@ class LinkParser(HTMLParser):
                     # We combine a relative URL with the base URL to create
                     # an absolute URL like:
                     # www.netinstructions.com/somepage.html
-                    newUrl = parse.urljoin(self.baseUrl, value)
+                    if year in value:
+                        newUrl = parse.urljoin(self.baseUrl, value)
                     # And add it to our colection of links:
-                    self.links = self.links + [newUrl]
+                        self.links = self.links + [newUrl]
 
     # This is a new function that we are creating to get links
     # that our spider() function will call
@@ -53,10 +56,10 @@ class LinkParser(HTMLParser):
 # And finally here is our spider. It takes in an URL, a word to find,
 # and the number of pages to search through before giving up
 # from: http://www.netinstructions.com/how-to-make-a-web-crawler-in-under-50-lines-of-python-code/
+
 def crimeCrawler(url, wordBank, maxPages):  
     pagesToVisit = [url]
     numberVisited = 0
-    pageScore = 0
     # The main loop. Create a LinkParser and get all the links on the page.
     # Also search the page for the word or string
     # In our getLinks function we return the web page
@@ -79,4 +82,14 @@ def crimeCrawler(url, wordBank, maxPages):
         except:
             print(" **Failed!**")
 
-crimeCrawler("http://www.cnn.com/2014/08/11/us/missouri-ferguson-michael-brown-what-we-know/", ["shot", "shooting", "police", "officer"], 2)
+def getWordBank(pathToWordBank):
+    wordBankFile = open(pathToWordBank, 'r')
+    wordBank = []
+    
+    for line in wordBankFile:
+        line = line.strip('\n')
+        wordBank.append(line)
+    
+    return wordBank
+
+crimeCrawler("http://www.cnn.com/specials/us/crime-and-justice", ["dicks"], 50)

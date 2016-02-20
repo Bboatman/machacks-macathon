@@ -1,200 +1,250 @@
-1	   the	a	22038615	0.98
-2	   be	v	12545825	0.97
-3	   and	c	10741073	0.99
-4	   of	i	10343885	0.97
-5	   a	a	10144200	0.98
-6	   in	i	6996437	0.98
-7	   to	t	6332195	0.98
-8	   have	v	4303955	0.97
-9	   to	i	3856916	0.99
-10	   it	p	3872477	0.96
-11	   I	p	3978265	0.93
-12	   that	c	3430996	0.97
-13	   for	i	3281454	0.98
-14	   you	p	3081151	0.92
-15	   he	p	2909254	0.94
-16	   with	i	2683014	0.99
-17	   on	i	2485306	0.99
-18	   do	v	2573587	0.95
-19	   say	v	1915138	0.95
-20	   this	d	1885366	0.96
-21	   they	p	1865580	0.96
-22	   at	i	1767638	0.98
-23	   but	c	1776767	0.97
-24	   we	p	1820935	0.94
-25	   his	a	1801708	0.95
-26	   from	i	1635914	0.99
-27	   that	d	1712406	0.94
-28	   not	x	1638830	0.98
-29	   n't	x	1619007	0.97
-30	   by	i	1490548	0.96
-31	   she	p	1484869	0.91
-32	   or	c	1379320	0.97
-33	   as	c	1296879	0.98
-34	   what	d	1181023	0.94
-35	   go	v	1151045	0.93
-36	   their	a	1083029	0.97
-37	   can	v	1022775	0.98
-38	   who	p	1018283	0.97
-39	   get	v	992596	0.94
-40	   if	c	933542	0.97
-41	   would	v	925515	0.97
-42	   her	a	969591	0.91
-43	   all	d	892102	0.98
-44	   my	a	919821	0.93
-45	   make	v	857168	0.98
-46	   about	i	874406	0.96
-47	   know	v	892535	0.93
-48	   will	v	824568	0.97
-49	   as	i	829018	0.95
-50	   up	r	795534	0.95
-51	   one	m	768232	0.98
-52	   time	n	764657	0.98
-53	   there	e	784528	0.96
-54	   year	n	769254	0.96
-55	   so	r	756550	0.95
-56	   think	v	772787	0.91
-57	   when	c	678626	0.98
-58	   which	d	685982	0.96
-59	   them	p	677870	0.97
-60	   some	d	674193	0.98
-61	   me	p	709623	0.92
-62	   people	n	691468	0.95
-63	   take	v	670745	0.97
-64	   out	r	678603	0.96
-65	   into	i	668172	0.97
-66	   just	r	677711	0.94
-67	   see	v	663645	0.96
-68	   him	p	677707	0.92
-69	   your	a	659622	0.94
-70	   come	v	628254	0.95
-71	   could	v	617932	0.96
-72	   now	r	605997	0.94
-73	   than	c	579757	0.97
-74	   like	i	568850	0.96
-75	   other	j	547799	0.97
-76	   how	r	538893	0.97
-77	   then	r	543977	0.95
-78	   its	a	539719	0.96
-79	   our	a	525107	0.97
-80	   two	m	511027	0.99
-81	   more	r	517536	0.97
-82	   these	d	513864	0.95
-83	   want	v	514972	0.95
-84	   way	n	470401	0.98
-85	   look	v	491707	0.93
-86	   first	m	463566	0.98
-87	   also	r	464606	0.96
-88	   new	j	435993	0.97
-89	   because	c	438539	0.96
-90	   day	n	432773	0.97
-91	   more	d	420170	0.97
-92	   use	v	420781	0.96
-93	   no	a	402222	0.98
-94	   man	n	409760	0.95
-95	   find	v	395203	0.98
-96	   here	r	412315	0.93
-97	   thing	n	400724	0.94
-98	   give	v	384503	0.98
-99	   many	d	385348	0.97
-100	   well	r	411776	0.91
-101	   only	r	379574	0.98
-102	   those	d	378007	0.97
-103	   tell	v	388155	0.94
-104	   one	p	369553	0.98
-105	   very	r	391821	0.92
-106	   her	p	397950	0.89
-107	   even	r	361067	0.98
-108	   back	r	367844	0.94
-109	   any	d	348100	0.98
-110	   good	j	353973	0.96
-111	   woman	n	341422	0.98
-112	   through	i	340921	0.98
-113	   us	p	351088	0.95
-114	   life	n	333085	0.98
-115	   child	n	333849	0.97
-116	   there	r	333433	0.93
-117	   work	v	318210	0.98
-118	   down	r	329409	0.94
-119	   may	v	324569	0.95
-120	   after	i	311902	0.98
-121	   should	v	310265	0.98
-122	   call	v	308050	0.97
-123	   world	n	303506	0.97
-124	   over	i	300349	0.98
-125	   school	n	304183	0.95
-126	   still	r	296953	0.97
-127	   try	v	294023	0.96
-128	   in	r	285035	0.98
-129	   as	r	281483	0.98
-130	   last	m	289843	0.95
-131	   ask	v	284632	0.96
-132	   need	v	276744	0.98
-133	   too	r	280396	0.96
-134	   feel	v	275214	0.95
-135	   three	m	266744	0.98
-136	   when	r	268219	0.97
-137	   state	n	272193	0.94
-138	   never	r	262584	0.96
-139	   become	v	259102	0.97
-140	   between	i	264158	0.94
-141	   high	j	255936	0.96
-142	   really	r	263414	0.91
-143	   something	p	254910	0.94
-144	   most	r	246360	0.96
-145	   another	d	240646	0.98
-146	   much	d	244507	0.97
-147	   family	n	243267	0.97
-148	   own	d	240452	0.98
-149	   out	i	242443	0.96
-150	   leave	v	240482	0.96
-151	   put	v	237480	0.96
-152	   old	j	236577	0.96
-153	   while	c	234555	0.97
-154	   mean	v	242198	0.93
-155	   on	r	236980	0.95
-156	   keep	v	231760	0.96
-157	   student	n	255047	0.88
-158	   why	r	235442	0.95
-159	   let	v	240300	0.93
-160	   great	j	225005	0.97
-161	   same	d	222836	0.98
-162	   big	j	227169	0.96
-163	   group	n	229435	0.93
-164	   begin	v	218617	0.98
-165	   seem	v	219627	0.97
-166	   country	n	223138	0.95
-167	   help	v	216082	0.98
-168	   talk	v	229429	0.92
-169	   where	c	213744	0.98
-170	   turn	v	221392	0.94
-171	   problem	n	217728	0.96
-172	   every	a	212739	0.97
-173	   start	v	213952	0.96
-174	   hand	n	225247	0.91
-175	   might	v	209059	0.98
-176	   American	j	214968	0.95
-177	   show	v	208037	0.98
-178	   part	n	207861	0.98
-179	   about	r	208550	0.97
-180	   against	i	204379	0.98
-181	   place	n	202427	0.98
-182	   over	r	208260	0.95
-183	   such	d	207065	0.95
-184	   again	r	206895	0.94
-185	   few	d	197266	0.97
-186	   case	n	200773	0.95
-187	   most	d	197086	0.96
-188	   week	n	199268	0.95
-189	   company	n	203345	0.93
-190	   where	r	194427	0.96
-191	   system	n	200175	0.94
-192	   each	d	196522	0.95
-193	   right	r	205250	0.90
-194	   program	n	195985	0.93
-195	   hear	v	196070	0.93
-196	   so	c	191893	0.95
-197	   question	n	192070	0.95
-198	   during	i	190729	0.95
-199	   work	n	187533	0.97
-200	   play	v	188328	0.96
+the
+be
+and
+of
+a
+in
+to
+have
+to
+it
+I
+that
+for
+you
+he
+with
+on
+do
+say
+this
+they
+at
+but
+we
+his
+from
+that
+not
+n't
+by
+she
+or
+as
+what
+go
+their
+can
+who
+get
+if
+would
+her
+all
+my
+make
+about
+know
+will
+as
+up
+one
+time
+there
+year
+so
+think
+when
+which
+them
+some
+me
+people
+take
+out
+into
+just
+see
+him
+your
+come
+could
+now
+than
+like
+other
+how
+then
+its
+our
+two
+more
+these
+want
+way
+look
+first
+also
+new
+because
+day
+more
+use
+no
+man
+find
+here
+thing
+give
+many
+well
+only
+those
+tell
+one
+very
+her
+even
+back
+any
+good
+woman
+through
+us
+life
+child
+there
+work
+down
+may
+after
+should
+call
+world
+over
+school
+still
+try
+in
+as
+last
+ask
+need
+too
+feel
+three
+when
+state
+never
+become
+between
+high
+really
+something
+most
+another
+much
+family
+own
+out
+leave
+put
+old
+while
+mean
+on
+keep
+student
+why
+let
+great
+same
+big
+group
+begin
+seem
+country
+help
+talk
+where
+turn
+problem
+every
+start
+hand
+might
+American
+show
+part
+about
+against
+place
+over
+such
+again
+few
+case
+most
+week
+company
+where
+system
+each
+right
+program
+hear
+so
+question
+during
+work
+play
+government
+run
+small
+number
+off
+always
+move
+like
+night
+live
+Mr
+point
+believe
+hold
+today
+bring
+happen
+next
+without
+before
+large
+all
+million
+must
+home
+under
+water
+room
+write
+mother
+area
+national
+money
+story
+young
+fact
+month
+different
+lot
+right
+study
+book
+eye
+job
+word
+though
+business
+issue
+side
+kind
