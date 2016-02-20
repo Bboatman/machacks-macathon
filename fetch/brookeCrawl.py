@@ -1,8 +1,7 @@
 from html.parser import HTMLParser  
 from urllib.request import urlopen  
 from urllib import parse
-
-year = "2016"
+from time import sleep
 
 class LinkParser(HTMLParser):
     def __init__(self):
@@ -19,7 +18,7 @@ class LinkParser(HTMLParser):
         if tag  == 'a':
             for (key, value) in attrs:
                 if key == 'href':
-                    if year in value:
+                    if ("2016" in value or "2015" in value or "2014" in value) and "video" not in value:
                         newUrl = parse.urljoin(self.baseUrl, value)
                     # And add it to our colection of links:
                         self.links = self.links + [newUrl]
@@ -46,30 +45,35 @@ class LinkParser(HTMLParser):
             return "",[]
 
 def newsCrawler(url, wordBank, maxPages):  
-    pagesToVisit = [url]
+    pagesToVisit = url
     numberVisited = 0
     text = ""
+    compoundScore = 0
+    fileCount = 0
+    count = 0
+    
     while numberVisited < maxPages and pagesToVisit != []:
         text = ""
         numberVisited = numberVisited +1
+        if numberVisited % 100 == 0:
+            sleep(10)
         # Start from the beginning of our collection of pages to visit:
         url = pagesToVisit[0]
         pagesToVisit = pagesToVisit[1:]
-        try:
-            print(numberVisited, "Visiting:", url)
-            parser = LinkParser()
-            data, links = parser.getLinks(url) #links should only be links to articles
-            for index in parser.getIndices():
-                endex = data.find("</p>", index)
+        
+        print(numberVisited, "Visiting:", url)
+        parser = LinkParser()
+        data, links = parser.getLinks(url)
+        for index in parser.getIndices():
+            endex = data.find("</p>", index)
+            if len(data[index:endex]) < 1000:
                 text = text + data[index+30:endex]
-            for word in wordBank: 
-                wordScore = text.find(word)
-                if wordScore > 10000:
-                    print(text)
-                print("Found: ", word, " ", wordScore, "times")
-            pagesToVisit = pagesToVisit + links
-        except(e):
-            print(e)
+        pageScore = pageScorer(wordBank, text)
+        if pageScore > len(wordBank) / 2:
+            newfile = open("interestingArticles/" + str(count) + ".txt", 'w')
+            newfile.write(url + " \n " + text)
+            fileCount += 1
+        pagesToVisit = pagesToVisit + links
 
 def getWordBank(pathToWordBank):
     wordBankFile = open(pathToWordBank, 'r')
@@ -78,7 +82,21 @@ def getWordBank(pathToWordBank):
     for line in wordBankFile:
         line = line.strip('\n')
         wordBank.append(line)
-    
     return wordBank
 
-newsCrawler("http://www.cnn.com/specials/us/crime-and-justice", getWordBank("../parse/wordbank.txt"), 20)
+def pageScorer(wordBank, pageText):
+    score = 0
+    if len(pageText) > 0:
+        keyWords = set(wordBank)
+        textWords = set()
+        for word in wordBank: 
+            if word in pageText:
+                textWords.add(word)
+        intersection = keyWords & textWords
+        if len(intersection) > len(wordBank) / 2:
+            adjustedWordScore = len(intersection)**2
+            score += adjustedWordScore
+    print("Scored:", score)
+    return score
+
+newsCrawler(["http://www.cnn.com/specials/us/crime-and-justice", "http://www.cnn.com/2015/12/21/us/sandra-bland-no-indictments/", "http://www.cnn.com/2014/08/11/us/missouri-ferguson-michael-brown-what-we-know/", "http://www.cnn.com/2015/11/21/us/minneapolis-jamar-clark-police-shooting/", "http://www.cnn.com/2015/12/28/us/tamir-rice-shooting/"], getWordBank("../parse/wordbank.txt"), 500)
