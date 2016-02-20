@@ -59,29 +59,8 @@ def readInEvents():
         e.setlat(lat)
         e.setlon(lon)
 
-        print(e.getlat())
-        print(e.getlon())
         events.append(e)
     return events
-
-# def degree2dec(dms_str):
-#     dms_str = re.sub(r'\s', '', dms_str)
-#     if re.search('[swSW]', dms_str):
-#         sign = -1
-#     else:
-#         sign = 1
-
-#     (degree, minute, second, frac_seconds) = re.split('\D+', dms_str, maxsplit=4)
-#     second += "." + frac_seconds
-#     return sign * (int(degree) + float(minute) / 60 + float(second) / 3600)
-    
-# def conversion(old):
-#     direction = {'N':-1, 'S':1, 'E': -1, 'W':1}
-#     new = old.replace('m',' ').replace(' ',' ').replace('s',' ')
-#     new = new.split(", ")
-#     new_dir = new.pop()
-#     new.extend([0,0,0])
-#     return (int(new[0])+int(new[1])/60.0+int(new[2])/3600.0) * direction[new_dir]
 
 events = readInEvents()
 features = []
@@ -91,4 +70,4 @@ for e in events:
     features.append([float(e.getlat()), float(e.getlon())])
 features = array(features)
 x, y = kmeans2(whiten(features), 3, iter = 20) 
-#kmeans2(features,2)
+print x, y

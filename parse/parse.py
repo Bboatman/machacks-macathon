@@ -102,7 +102,7 @@ def findLocs(properNouns):
             except :
                 pass
     
-    
+    urlData = open("jsonEvents.txt", "a")
     for i in range(len(locs)):
         loc = locs[i]
         if loc.getState() is not "":
@@ -116,25 +116,16 @@ def findLocs(properNouns):
                             locs[i].setCity(nameArr[0])
                             locs[i].setGps(location.point)
                             locs[i].setUrl(articles[0][i])
+                            txt = articles[i][0]
+                            jsonString = "{""coordinates"": " + locs[i].getGps() + ", ""url"": " + txt + "}\n"
+                            urlData.write(jsonString)
                             break
                     if item[1] is not i:
                         break
-                except:
-                    pass
+                except Exception, e:
+                    print e
+                    
     return locs
 
 
-def getCoordinates():
-    articles = grabInterestingArticles()
-    urlData = open("jsonEvents.txt", "a")
-    nouns = getNouns()
-    locs = findLocs(nouns)
-    for i in range(len(articles)):
-        item = locs[i]
-        val = str(item.getGps())
-        txt = articles[i][0]
-        jsonString = "{""coordinates"": " + val + ", ""url"": " + txt + "}\n"
-        urlData.write(jsonString)
-
-
-getCoordinates()
+findLocs(getNouns())

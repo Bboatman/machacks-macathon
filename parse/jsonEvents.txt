@@ -1,5 +1,5 @@
-{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
-{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
-{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
-{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
-{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: http://www.cnn.com/2015/07/21/us/texas-sandra-bland-jail-death-explain/}
+{coordinates: 44 58m 38.2782s N, 93 15m 55.6888s W, url: http://www.cnn.com/2015/11/21/us/minneapolis-jamar-clark-police-shooting/}
+{coordinates: 38 44m 39.183s N, 90 18m 19.409s W, url: http://www.cnn.com/2014/08/11/us/missouri-ferguson-michael-brown-what-we-know/}
+{coordinates: 30 16m 16.063s N, 97 44m 37.3178s W, url: http://www.mystatesman.com/news/news/crime-law/sources-man-killed-by-austin-police-monday-was-una/nqMLz/}
+{coordinates: 41 30m 18.5807s N, 81 41m 36.4002s W, url: http://www.cnn.com/2015/12/28/us/tamir-rice-shooting/}
