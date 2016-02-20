@@ -4,15 +4,21 @@ import string
 import os
 
 def getArticles():
+    '''
+    Open all files in the primer texts for training in looking for key indicators
+    of desired topic
+    '''
     path = '/home/ubuntu/workspace/parse/primerTexts'
     articles = []
     for filename in os.listdir(path):
         articles.append(open("./primerTexts/" + filename, "r"))
     return articles
-#articles = [open("./primerTexts/mikebrown.txt","r"),open("./primerTexts/tamir.txt","r"),
-#    open("./primerTexts/jamar.txt","r"), open("./primerTexts/shooting.txt", "r"), open("./bland.txt")]
 
 def cleanIgnoreList():
+    ''' 
+    Got top 250 most common english words from http://www.wordfrequency.info/free.asp?s=y
+    Clean out white space and other extraneous data for ease in comparison
+    '''
     ignoreFile = open("./ignore.txt", "r")
     ignore =[]
     for line in ignoreFile:
@@ -30,6 +36,10 @@ def cleanIgnoreList():
     ignoreFile.close()
 
 def getIgnoreList():
+    ''' 
+    Open and return a list of words to ignore from an already cleaned file of 
+    ignore words
+    '''
     ignoreFile = open("./ignore.txt", "r")
     ignoreWords = []
     for line in ignoreFile:
@@ -37,11 +47,18 @@ def getIgnoreList():
     return ignoreWords
     
 def cleanWord(word):
+    '''
+    Strip out any punctuation and cast to lowercase
+    '''
     word.lower()
     out = word.translate(string.punctuation)
     return out
 
 def getUniqueArticleText(articles):
+    ''' 
+    Pull out unique and interesting article text that occurs accross a large 
+    proportion of primer articles
+    '''
     wordDict = defaultdict(int)
     ignoreWords = getIgnoreList()
     for article in articles:
@@ -60,6 +77,9 @@ def getUniqueArticleText(articles):
     return articleText 
 
 def generateWordBank():
+    '''
+    Generate a list of words and save them to file for reference by the scraper
+    '''
     articles = getArticles()
     articleText = getUniqueArticleText(articles)
     bestWords = []

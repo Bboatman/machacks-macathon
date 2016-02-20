@@ -5,6 +5,10 @@ import LatLon
 
 jsonEvents = open("jsonEvents.txt", "r")
 class NewsEvent():
+    ''' 
+    Object oriented class for manipulating values relevant to a given url
+    including it's interpreted gps coordinates
+    '''
     
     def __init__(self):
         self.gps = ""
@@ -41,6 +45,10 @@ class NewsEvent():
         return "{\"lat\": " + self.getlat() + ", \"lon\": " + self.getlon() + ", \"url\": \"" + self.getUrl() + "\"}"
         
 def readInEvents():
+    '''
+    Read in the event data stored by the text parser and calculate decimal
+    values of latitude and longitude for data visualization rendering
+    '''
     events = []
     for line in jsonEvents:
         dataArr = line.split(": ")
@@ -63,6 +71,10 @@ def readInEvents():
     return events
 
 def generateClusters():
+    '''
+    use kMeans clustering to calculate groups of events that are notably close
+    to each other  for reduction in rendered points
+    '''
     events = readInEvents()
     features = []
     for e in events:
@@ -71,10 +83,15 @@ def generateClusters():
         features.append([float(e.getlat()), float(e.getlon())])
     features = array(features)
     centroids, indices = kmeans2(whiten(features), 3, iter = 20) 
+    print indices
     return centroids, indices, events
     
 
 def clusterToJson(centroids, indices, events):
+    '''
+    Turn cluster data into json objects that are readable by the front end for 
+    simplicity in scripting between back and front end
+    '''
     masterStr = "["
     cumulativeSize = 0
     for i in range(len(centroids)):    

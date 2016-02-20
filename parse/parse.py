@@ -14,6 +14,11 @@ states = ["Alabama", "Alaska","Arizona","Arkansas","California","Colorado","Conn
 ignore = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"]
     
 def grabInterestingArticles():
+    '''
+    A more specific version of the article parser, built a new one because there
+    were so many other parts that needed handled
+    Returns a list of article url and body text
+    '''
     articles = []
     for filename in os.listdir("./interestingArticles"):
         count = 0
@@ -31,6 +36,10 @@ def grabInterestingArticles():
     return articles
 
 class NewsEvent():
+    '''
+    My 3am dead brain decided it was easier to copy this class than figure out a
+    dry solution, so that's what I did. It should be generalized at some point
+    '''
     
     def __init__(self):
         self.eventstate = ""
@@ -69,6 +78,9 @@ class NewsEvent():
 
         
 def getNouns():
+    ''' 
+    Grab out all of the proper nouns for hunting out location data
+    '''
     articles = grabInterestingArticles()
     properNouns = []
     for i in range(len(articles)):
@@ -87,6 +99,10 @@ def getNouns():
     return properNouns
     
 def findLocs(properNouns):
+    '''
+    Generate a list of news events and set their location data, writing as it finds 
+    data so that the api limiter shutting off won't waste all the time spent running
+    '''
     articles = grabInterestingArticles()
     locs = []
     for i in range(len(articles)):
