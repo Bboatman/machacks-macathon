@@ -47,6 +47,11 @@ class LinkParser(HTMLParser):
             # Note that feed() handles Strings well, but not bytes
             # (A change from Python 2.x to Python 3.x)
             htmlString = htmlBytes.decode("utf-8")
+            end = 0
+            while end >= 0:
+                start = htmlString.find('<p class="zn-body__paragraph">"', end)
+                end = htmlString.find('</p>', start)
+                print(start, end, htmlString[start+30:end], "\n")
             self.feed(htmlString)
             return htmlString, self.links
         else:
@@ -71,16 +76,14 @@ def crimeCrawler(url, wordBank, maxPages):
         # Start from the beginning of our collection of pages to visit:
         url = pagesToVisit[0]
         pagesToVisit = pagesToVisit[1:]
-        try:
-            print(numberVisited, "Visiting:", url)
-            parser = LinkParser()
-            data, links = parser.getLinks(url) #links should only be links to articles
-            for word in wordBank: 
-                pageScore += data.find(word)
-                pagesToVisit = pagesToVisit + links
-                print(" **Found:**", word, " ", data.find(word) ," times")
-        except:
-            print(" **Failed!**")
+
+        print(numberVisited, "Visiting:", url)
+        parser = LinkParser()
+        data, links = parser.getLinks(url) #links should only be links to articles
+        for word in wordBank: 
+            wordScore = data.find(word)
+            pagesToVisit = pagesToVisit + links
+
 
 def getWordBank(pathToWordBank):
     wordBankFile = open(pathToWordBank, 'r')
@@ -92,4 +95,4 @@ def getWordBank(pathToWordBank):
     
     return wordBank
 
-crimeCrawler("http://www.cnn.com/specials/us/crime-and-justice", ["dicks"], 50)
+crimeCrawler("http://www.cnn.com/2016/02/18/world/uganda-election-social-media-shutdown/index.html", ['section class="zn zn-body-text'], 1)
