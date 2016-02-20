@@ -38,7 +38,7 @@ class NewsEvent():
 
         
     def __str__(self):
-        return "{""coordinates"": " + self.getGps() + ", ""url"": " + self.getUrl() + "}"
+        return "{\"lat\": " + self.getlat() + ", \"lon\": " + self.getlon() + ", \"url\": \"" + self.getUrl() + "\"}"
         
 def readInEvents():
     events = []
@@ -62,12 +62,38 @@ def readInEvents():
         events.append(e)
     return events
 
-events = readInEvents()
-features = []
-for e in events:
-    print("latitude: "+ e.getlat())
-    print("longitude: "+ e.getlon())
-    features.append([float(e.getlat()), float(e.getlon())])
-features = array(features)
-x, y = kmeans2(whiten(features), 3, iter = 20) 
-print x, y
+def generateClusters():
+    events = readInEvents()
+    features = []
+    for e in events:
+        print("latitude: "+ e.getlat())
+        print("longitude: "+ e.getlon())
+        features.append([float(e.getlat()), float(e.getlon())])
+    features = array(features)
+    centroids, indices = kmeans2(whiten(features), 3, iter = 20) 
+    return centroids, indices, events
+    
+def clusterToJson(centroids, indices, events):
+    masterStr = "["
+    cumulativeSize = 0
+    for i in range(len(centroids)):    
+        clusterStr = "{\"events\":["
+        size = 0
+        for j in range(len(indices)):
+            size += 1
+            clusterStr += str(events[j]) + ","
+        if j == len(indices) -1:
+            clusterStr = clusterStr[0:-1]
+            clusterStr += "],"
+        cumulativeSize += size
+        clusterStr += "\"size\": " + str(size)
+        clusterStr += ",\"center\":{ \"lat\":" + str(centroids[i][0]) + ",\"lon\":" + str(centroids[i][1]) + "}},"
+        masterStr += clusterStr
+        if i == len(centroids) - 1:
+            masterStr = masterStr[0:-1]
+    masterStr += "]"
+    print masterStr
+        
+            
+centroids, indices, events = generateClusters()
+clusterToJson(centroids, indices, events)
