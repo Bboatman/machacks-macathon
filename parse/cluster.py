@@ -73,6 +73,7 @@ def generateClusters():
     centroids, indices = kmeans2(whiten(features), 3, iter = 20) 
     return centroids, indices, events
     
+
 def clusterToJson(centroids, indices, events):
     masterStr = "["
     cumulativeSize = 0
@@ -92,8 +93,9 @@ def clusterToJson(centroids, indices, events):
         if i == len(centroids) - 1:
             masterStr = masterStr[0:-1]
     masterStr += "]"
-    print masterStr
+    return masterStr
         
             
 centroids, indices, events = generateClusters()
-clusterToJson(centroids, indices, events)
+jsonFile = open("jsonClusters.txt", "w")
+jsonFile.write(clusterToJson(centroids, indices, events))
