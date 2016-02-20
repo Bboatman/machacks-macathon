@@ -1,0 +1,5 @@
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}
+{coordinates: 33 15m 31.9741s N, 86 49m 46.321s W, url: dummy.url}

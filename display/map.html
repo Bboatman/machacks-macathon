@@ -20,153 +20,187 @@
 <body>
   <div id="map"></div>
   <script type="text/javascript">
-    var citymap = {
-      chicago: {
-        center: {
-          lat: 41.878,
+    // var citymap = {
+    //   chicago: {
+    //     center: {
+    //       lat: 41.878,
+    //       lng: -87.629
+    //     },
+    //     population: 2714856,
+    //     events: {
+    //       event1: {
+    //         location: {
+    //           lat: 41.888,
+    //           lng: -87.629
+    //         },
+    //         article: 'http://www.google.com/',
+    //         info: "AAAASome dude died"
+    //       },
+    //       event2: {
+    //         location: {
+    //           lat: 41.785,
+    //           lng: -87.578
+    //         },
+    //         article: 'http://www.macalester.edu/',
+    //         info: "AAAAbleep bloop"
+    //       },
+    //       event3: {
+    //         location: {
+    //           lat: 41.920,
+    //           lng: -87.891
+    //         },
+    //         article: 'http://www.github.com/',
+    //         info: 'AAAAcondor! condor!'
+    //       },
+    //       event4: {
+    //         location: {
+    //           lat: 41.653,
+    //           lng: -87.488
+    //         },
+    //         article: 'http://www.reddit.com/',
+    //         info: 'AAAAfront page of the internet'
+    //       }
+
+    //     }
+    //   },
+    //   newyork: {
+    //     center: {
+    //       lat: 40.714,
+    //       lng: -74.005
+    //     },
+    //     population: 8405837,
+    //     events: {
+    //       event1: {
+    //         location: {
+    //           lat: 40.714,
+    //           lng: -74.005
+    //         },
+    //         article: 'http://www.google.com/',
+    //         info: "BBBBSome dude died"
+    //       },
+    //       event2: {
+    //         location: {
+    //           lat: 40.687,
+    //           lng: -73.790
+    //         },
+    //         article: 'http://www.macalester.edu/',
+    //         info: "BBBBbleep bloop"
+    //       },
+    //       event3: {
+    //         location: {
+    //           lat: 40.791,
+    //           lng: -74.038
+    //         },
+    //         article: 'http://www.github.com/',
+    //         info: 'BBBBcondor! condor!'
+    //       },
+    //       event4: {
+    //         location: {
+    //           lat: 40.672,
+    //           lng: -73.981
+    //         },
+    //         article: 'http://www.reddit.com/',
+    //         info: 'BBBBfront page of the internet'
+    //       }
+
+    //     }
+    //   },
+    //   losangeles: {
+    //     center: {
+    //       lat: 34.052,
+    //       lng: -118.243
+    //     },
+    //     population: 3857799,
+    //     events: {
+    //       event1: {
+    //         location: {
+    //           lat: 34.052,
+    //           lng: -118.243
+    //         },
+    //         article: 'http://www.google.com/',
+    //         info: "CCCCSome dude died"
+    //       },
+    //       event2: {
+    //         location: {
+    //           lat: 33.910,
+    //           lng: -118.396
+    //         },
+    //         article: 'http://www.macalester.edu/',
+    //         info: "CCCCbleep bloop"
+    //       },
+    //       event3: {
+    //         location: {
+    //           lat: 33.923,
+    //           lng: -118.035
+    //         },
+    //         article: 'http://www.github.com/',
+    //         info: 'CCCCcondor! condor!'
+    //       }
+
+    //     }
+    //   },
+    //   vancouver: {
+    //     center: {
+    //       lat: 49.25,
+    //       lng: -123.1
+    //     },
+    //     population: 603502,
+    //     events: {
+    //       event1: {
+    //         location: {
+    //           lat: 49.25,
+    //           lng: -123.1
+    //         },
+    //         article: 'http://www.google.com/',
+    //         info: "DDDDSome dude died"
+    //       },
+    //       event2: {
+    //         location: {
+    //           lat: 49.232,
+    //           lng: -123.143
+    //         },
+    //         article: 'http://www.macalester.edu/',
+    //         info: "DDDDbleep bloop"
+    //       }
+
+    //     }
+    //   }
+    // };
+    
+    var clusters = [{
+      size: 2,
+      center: {
+        lat: 41.878,
+        lng: -87.629
+      },
+      events: [{
+        loc: {
+          lat: 41.888,
           lng: -87.629
         },
-        population: 2714856,
-        events: {
-          event1: {
-            location: {
-              lat: 41.888,
-              lng: -87.629
-            },
-            article: 'http://www.google.com/',
-            info: "AAAASome dude died"
-          },
-          event2: {
-            location: {
-              lat: 41.785,
-              lng: -87.578
-            },
-            article: 'http://www.macalester.edu/',
-            info: "AAAAbleep bloop"
-          },
-          event3: {
-            location: {
-              lat: 41.920,
-              lng: -87.891
-            },
-            article: 'http://www.github.com/',
-            info: 'AAAAcondor! condor!'
-          },
-          event4: {
-            location: {
-              lat: 41.653,
-              lng: -87.488
-            },
-            article: 'http://www.reddit.com/',
-            info: 'AAAAfront page of the internet'
-          }
-
-        }
+        url: "http://www.macalester.edu"
+      }, {
+        loc: {
+          lat: 41.785,
+          lng: -87.578
+        },
+        url: "http://www.github.com"
+      }]
+    }, {
+      size: 1,
+      center: {
+        lat: 40.714,
+        lng: -74.005
       },
-      newyork: {
-        center: {
+      events: [{
+        loc: {
           lat: 40.714,
           lng: -74.005
         },
-        population: 8405837,
-        events: {
-          event1: {
-            location: {
-              lat: 40.714,
-              lng: -74.005
-            },
-            article: 'http://www.google.com/',
-            info: "BBBBSome dude died"
-          },
-          event2: {
-            location: {
-              lat: 40.687,
-              lng: -73.790
-            },
-            article: 'http://www.macalester.edu/',
-            info: "BBBBbleep bloop"
-          },
-          event3: {
-            location: {
-              lat: 40.791,
-              lng: -74.038
-            },
-            article: 'http://www.github.com/',
-            info: 'BBBBcondor! condor!'
-          },
-          event4: {
-            location: {
-              lat: 40.672,
-              lng: -73.981
-            },
-            article: 'http://www.reddit.com/',
-            info: 'BBBBfront page of the internet'
-          }
-
-        }
-      },
-      losangeles: {
-        center: {
-          lat: 34.052,
-          lng: -118.243
-        },
-        population: 3857799,
-        events: {
-          event1: {
-            location: {
-              lat: 34.052,
-              lng: -118.243
-            },
-            article: 'http://www.google.com/',
-            info: "CCCCSome dude died"
-          },
-          event2: {
-            location: {
-              lat: 33.910,
-              lng: -118.396
-            },
-            article: 'http://www.macalester.edu/',
-            info: "CCCCbleep bloop"
-          },
-          event3: {
-            location: {
-              lat: 33.923,
-              lng: -118.035
-            },
-            article: 'http://www.github.com/',
-            info: 'CCCCcondor! condor!'
-          }
-
-        }
-      },
-      vancouver: {
-        center: {
-          lat: 49.25,
-          lng: -123.1
-        },
-        population: 603502,
-        events: {
-          event1: {
-            location: {
-              lat: 49.25,
-              lng: -123.1
-            },
-            article: 'http://www.google.com/',
-            info: "DDDDSome dude died"
-          },
-          event2: {
-            location: {
-              lat: 49.232,
-              lng: -123.143
-            },
-            article: 'http://www.macalester.edu/',
-            info: "DDDDbleep bloop"
-          }
-
-        }
-      }
-    };
-    
+        url: "http://www.facebook.com"
+      }]
+    }]
+        
     
     var map;
 
@@ -181,37 +215,49 @@
           draggable: false
         });
 
-      for (var city in citymap) {
+      function computeRadius(size) {
+        var min = 2;
+        var max = 10;
+        if (size >= min){
+          if (size <= max) {
+            return 100000 + ((size - min)/(max-min) *100000)
+          } else {
+            return 200000
+          }
+        } else {
+          return 50000
+        }
+      };
 
-        var cityCircle = new google.maps.Circle({
+      for (var cluster in clusters) {
+        var clusterCircle = new google.maps.Circle({
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 2,
           fillColor: '#FF0000',
           fillOpacity: 0.35,
           map: map,
-          center: citymap[city].center,
-          radius: Math.sqrt(citymap[city].population) * 100
+          center: clusters[cluster].center,
+          radius: computeRadius(clusters[cluster].size)
         });
 
-        console.log(citymap[city])
-        google.maps.event.addListener(cityCircle, 'click', function() {
+        google.maps.event.addListener(clusterCircle, 'click', function() {
           this.setMap(null);
           map.setZoom(8);
           map.setCenter(this.getCenter());
-        
-          
+          var eventList = clusters[cluster].events
+          $.each(clusters, function(i,v){
+            var eventList = v.events
+            $.each(eventList, function(i,v) {
+                var marker = new google.maps.Marker({
+                  position: v.loc,
+                  map: map,
+                  title: v.url
+                });
+            });
+          });
         });
-        // Add the circle for this city to the map.
-
-        // var currCity = citymap[city];
-        // var eventList = currCity.events
-        // console.log(eventList[event])
-        // var eventMarker = new google.maps.Marker({
-        //   position: eventList[event].location,
-        //   map: map,
-        //   title: eventList[event].article
-        // });
+       
       }
     };
   </script>

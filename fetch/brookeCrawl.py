@@ -18,7 +18,7 @@ class LinkParser(HTMLParser):
         if tag  == 'a':
             for (key, value) in attrs:
                 if key == 'href':
-                    if ("2016" in value or "2015" in value or "2014" in value) and "video" not in value:
+                    if ("2016" in value or "2015" in value or "2014" in value) and "playlists" not in value:
                         newUrl = parse.urljoin(self.baseUrl, value)
                     # And add it to our colection of links:
                         self.links = self.links + [newUrl]
@@ -55,8 +55,6 @@ def newsCrawler(url, wordBank, maxPages):
     while numberVisited < maxPages and pagesToVisit != []:
         text = ""
         numberVisited = numberVisited +1
-        if numberVisited % 100 == 0:
-            sleep(10)
         # Start from the beginning of our collection of pages to visit:
         url = pagesToVisit[0]
         pagesToVisit = pagesToVisit[1:]
@@ -69,8 +67,8 @@ def newsCrawler(url, wordBank, maxPages):
             if len(data[index:endex]) < 1000:
                 text = text + data[index+30:endex]
         pageScore = pageScorer(wordBank, text)
-        if pageScore > len(wordBank) / 2:
-            newfile = open("interestingArticles/" + str(count) + ".txt", 'w')
+        if pageScore > len(wordBank)/2:
+            newfile = open("interestingArticles/" + str(fileCount) + ".txt", 'w')
             newfile.write(url + " \n " + text)
             fileCount += 1
         pagesToVisit = pagesToVisit + links
@@ -100,5 +98,9 @@ def pageScorer(wordBank, pageText):
     return score
 
 file = open("spiderSeed.txt", 'r')
-print(line for line in file)
-#newsCrawler([line for line in file], getWordBank("../parse/wordbank.txt"), 500)
+urlSeed = []
+for line in file:
+    line = line.strip('\n')
+    urlSeed.append(line)
+    
+newsCrawler(urlSeed, getWordBank("../parse/wordbank.txt"), 250)

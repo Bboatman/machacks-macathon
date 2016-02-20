@@ -1,6 +1,7 @@
 from keywordFinder import getArticles
 from geopy.geocoders import Nominatim
 import itertools
+import os
 
 '''
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -9,10 +10,25 @@ THIS ONLY RUNS IN PYTHON 2.x BECAUSE GEOPY IS ANCIENT
 '''
 
 geolocator = Nominatim()
-articles = getArticles()
 states = ["Alabama", "Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
 ignore = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"]
     
+def grabInterestingArticles():
+    articles = []
+    for filename in os.listdir("./interestingArticles"):
+        count = 0
+        url = ""
+        body = ""
+        article = open("./interestingArticles/" + filename, "r")
+        for line in article:
+            if count == 0:
+                url = line[0:-1]
+                count += 1
+            else:
+                body = line
+        articles.append([url,body])
+
+    return articles
 
 class NewsEvent():
     
@@ -20,6 +36,7 @@ class NewsEvent():
         self.eventstate = ""
         self.eventcity = ""
         self.gps = ""
+        self.url = ""
     
     def setState(self,state):
         self.eventstate = str(state)
@@ -29,6 +46,9 @@ class NewsEvent():
         
     def setGps(self, val):
         self.gps = str(val)
+
+    def setUrl(self, val):
+        self.url = str(val)
     
     def getCity(self):
         return str(self.eventcity)
@@ -38,28 +58,36 @@ class NewsEvent():
         
     def getGps(self):
         return str(self.gps)
+
+    def getUrl(self, val):
+        return str(self.url)
         
     def __str__(self):
         return self.getCity()+ " " + self.getState() +"\n" + self.getGps()
+
+
+
         
 def getNouns():
+    articles = grabInterestingArticles()
     properNouns = []
     for i in range(len(articles)):
         properNouns.append([])
     index = 0
     for article in articles:
-        for line in article:
-            wordArray = line.split(" ")
-            for word in wordArray:
-                if len(word) > 1:
-                    if word[0].isupper():
-                        wordTuple = (word, index)
-                        if wordTuple not in properNouns:
-                            properNouns[index].append((word,index))
+        text = article[1]
+        wordArray = text.split(" ")
+        for word in wordArray:
+            if len(word) > 1:
+                if word[0].isupper():
+                    wordTuple = (word, index)
+                    if wordTuple not in properNouns:
+                        properNouns[index].append((word,index))
         index += 1
     return properNouns
     
 def findLocs(properNouns):
+    articles = grabInterestingArticles()
     locs = []
     for i in range(len(articles)):
         locs.append(NewsEvent())
@@ -87,7 +115,7 @@ def findLocs(properNouns):
                             print(nameArr)
                             locs[i].setCity(nameArr[0])
                             locs[i].setGps(location.point)
-                            print location.point
+                            locs[i].setUrl(articles[0][i])
                             break
                     if item[1] is not i:
                         break
@@ -97,13 +125,15 @@ def findLocs(properNouns):
 
 
 def getCoordinates():
-    urlData = open("jsonData.txt", "a")
+    articles = grabInterestingArticles()
+    urlData = open("jsonEvents.txt", "a")
     nouns = getNouns()
     locs = findLocs(nouns)
-    for item in locs:
+    for i in range(len(articles)):
+        item = locs[i]
         val = str(item.getGps())
-        txt = "dummy.url"
-        jsonString = "{""coordinates"": " + val + ", ""url"": " + txt + "}"
+        txt = articles[i][0]
+        jsonString = "{""coordinates"": " + val + ", ""url"": " + txt + "}\n"
         urlData.write(jsonString)
 
 
