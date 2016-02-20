@@ -124,7 +124,8 @@ def findLocs(properNouns):
                         break
                 except Exception, e:
                     print e
-                    
+                    if e is "Service not available":
+                        urlData.close() 
     return locs
 
 
