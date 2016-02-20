@@ -99,4 +99,6 @@ def pageScorer(wordBank, pageText):
     print("Scored:", score)
     return score
 
-newsCrawler(["http://www.cnn.com/specials/us/crime-and-justice", "http://www.cnn.com/2015/12/21/us/sandra-bland-no-indictments/", "http://www.cnn.com/2014/08/11/us/missouri-ferguson-michael-brown-what-we-know/", "http://www.cnn.com/2015/11/21/us/minneapolis-jamar-clark-police-shooting/", "http://www.cnn.com/2015/12/28/us/tamir-rice-shooting/"], getWordBank("../parse/wordbank.txt"), 500)
+file = open("spiderSeed.txt", 'r')
+print(line for line in file)
+#newsCrawler([line for line in file], getWordBank("../parse/wordbank.txt"), 500)
