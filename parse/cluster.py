@@ -54,12 +54,13 @@ def readInEvents():
         x = coordArr[0]
         y = coordArr[1]
         print(type(LatLon.string2latlon(x, y, 'd% %m% %S% %H' )))
-        #print(z)
-        #print(f)
-        e.setlat(LatLon.string2latlon(x, y, 'd% %m% %S% %H' )[0])
-        e.setlon(LatLon.string2latlon(x, y, 'd% %m% %S% %H' )[1])
-        #print(e.getlat())
-        #print(e.getlon())
+
+        lat, lon = LatLon.string2latlon(x, y, 'd% %m% %S% %H' ).to_string()
+        e.setlat(lat)
+        e.setlon(lon)
+
+        print(e.getlat())
+        print(e.getlon())
         events.append(e)
     return events
 
